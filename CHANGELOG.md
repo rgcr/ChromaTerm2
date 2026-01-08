@@ -2,7 +2,15 @@
 
 All notable changes to ChromaTerm2 will be documented in this file.
 
-## [2.0.0] 
+## [2.0.1] - 2026-01-07
+
+### Fixed
+- Fixed buffer overflow error in `window_resize_handler` on some systems ([#2](https://github.com/rgcr/ChromaTerm2/issues/2))
+  - Changed `fcntl.ioctl` buffer from string literal `'0000'` to proper `struct.pack('HHHH', 0, 0, 0, 0)`
+
+---
+
+## [2.0.0]
 
 ### Added
 - New maintainer: rgcr

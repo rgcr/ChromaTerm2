@@ -4,6 +4,7 @@ import fcntl
 import os
 import pty
 import signal
+import struct
 import sys
 import termios
 import threading
@@ -81,7 +82,8 @@ def run_program(program_args):
 
     # Update the slave's window size as the master is capturing the signals
     def window_resize_handler(*_):
-        size = fcntl.ioctl(sys.stdin.fileno(), termios.TIOCGWINSZ, '0000')
+        size = fcntl.ioctl(sys.stdin.fileno(), termios.TIOCGWINSZ,
+                           struct.pack('HHHH', 0, 0, 0, 0))
         fcntl.ioctl(master_fd, termios.TIOCSWINSZ, size)
 
     if sys.stdin.isatty():
