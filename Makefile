@@ -50,7 +50,7 @@ publish: build
 verify-install:
 	@echo "Testing installation from PyPI..."
 	@echo "Creating temporary virtual environment..."
-	python -m venv /tmp/chromaterm2_test_env
+	python3 -m venv /tmp/chromaterm2_test_env
 	/tmp/chromaterm2_test_env/bin/pip install chromaterm2
 	@echo "Testing installation..."
 	/tmp/chromaterm2_test_env/bin/ct --version
@@ -61,7 +61,7 @@ verify-install:
 verify-testpypi:
 	@echo "Testing installation from TestPyPI (with production PyPI fallback)..."
 	@echo "Creating temporary virtual environment..."
-	python -m venv /tmp/chromaterm2_testpypi_env
+	python3 -m venv /tmp/chromaterm2_testpypi_env
 	/tmp/chromaterm2_testpypi_env/bin/pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ chromaterm2
 	@echo "Testing installation..."
 	/tmp/chromaterm2_testpypi_env/bin/ct --version
