@@ -72,7 +72,7 @@ found is used.
 
 If no file is found, a default one is created in your home directory.
 
-> Check out [`contrib/rules`](https://github.com/hSaria/ChromaTerm/tree/main/contrib/rules);
+> Check out [`contrib/rules`](https://github.com/rgcr/ChromaTerm2/tree/main/contrib/rules);
 > it has some topic-specific rules that are not included in the defaults.
 
 ### Description
