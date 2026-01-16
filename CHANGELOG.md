@@ -2,6 +2,20 @@
 
 All notable changes to ChromaTerm2 will be documented in this file.
 
+## [2.1.0]
+
+### Added
+- Native Windows support using ConPTY (Windows 10 build 18362+)
+
+### Changed
+- CLI selects platform-specific backend at runtime (Windows vs Unix)
+
+### Fixed
+- Graceful fallback to Python RE when PCRE2 library is unavailable
+- Test parametrization always provides the `pcre` fixture
+
+---
+
 ## [2.0.1] 
 
 ### Fixed

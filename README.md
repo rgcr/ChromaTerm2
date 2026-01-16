@@ -151,17 +151,22 @@ of their unique features.
 
 > The default rules work on both engines.
 
+## Windows Support
+
+ChromaTerm supports Windows natively using ConPTY through direct Windows API calls (Windows 10 build 18362+).
+
+```shell
+pip install chromaterm2
+ct ipconfig
+ct cmd /c echo "Test IP: 192.168.1.1"
+```
+
 ## Help
 
 If you've got any questions or suggestions, please open up an
-[issue](https://github.com/rgcr/ChromaTerm/issues/new) (always
+[issue](https://github.com/rgcr/ChromaTerm2/issues/new) (always
 appreciated).
 
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed information about changes in each version.
-
-### Windows support
-
-To use ChromaTerm on Windows, you will need to run it with the
-[Windows Subsystem for Linux (`WSL`)](https://docs.microsoft.com/en-us/windows/wsl/about)

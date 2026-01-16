@@ -53,7 +53,7 @@ def args_init(args=None):
     '''
     formatter = lambda prog: argparse.HelpFormatter(prog, max_help_position=30)
     parser = argparse.ArgumentParser(formatter_class=formatter)
-    parser.epilog = 'For more info, go to https://github.com/hSaria/ChromaTerm.'
+    parser.epilog = 'For more info, go to https://github.com/rgcr/ChromaTerm2.'
 
     parser.add_argument('program',
                         metavar='program ...',
@@ -453,6 +453,8 @@ def main(args=None, max_wait=None, write_default=True):
     args = args_init(args)
 
     if args.reload:
+        if not hasattr(signal, 'SIGUSR1'):
+            return 'Process reload is not supported on Windows'
         return f'Processes reloaded: {signal_chromaterm_instances(signal.SIGUSR1)}'
 
     # Config file wasn't overridden; use default file
@@ -470,7 +472,11 @@ def main(args=None, max_wait=None, write_default=True):
     if args.benchmark:
         atexit.register(config.print_benchmark_results)
 
-    from .platform import unix as platform
+    # Import platform-specific module
+    if sys.platform == 'win32':
+        from .platform import windows as platform
+    else:
+        from .platform import unix as platform
 
     if args.program:
         # ChromaTerm is spawning the program in a pty; stdin is forwarded
@@ -493,7 +499,8 @@ def main(args=None, max_wait=None, write_default=True):
 
     # Ignore SIGINT (CTRL+C) and attach reload handler
     signal.signal(signal.SIGINT, signal.SIG_IGN)
-    signal.signal(signal.SIGUSR1, reload_config_handler)
+    if hasattr(signal, 'SIGUSR1'):
+        signal.signal(signal.SIGUSR1, reload_config_handler)
 
     try:
         # Begin processing the data (blocking operation)
@@ -505,4 +512,9 @@ def main(args=None, max_wait=None, write_default=True):
         # Close data_fd to signal to the child process that we're done
         os.close(data_fd) if isinstance(data_fd, int) else data_fd.close()
 
-    return os.wait()[1] >> 8 if args.program else 0
+    if args.program:
+        # On Windows, we don't wait for the child process as ConPTY handles it
+        if sys.platform == 'win32':
+            return 0
+        return os.wait()[1] >> 8
+    return 0
