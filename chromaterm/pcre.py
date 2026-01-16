@@ -5,7 +5,11 @@ from ctypes import (CDLL, POINTER, byref, c_char, c_size_t, c_uint32,
                     create_string_buffer)
 from ctypes.util import find_library
 
-PCRE2 = CDLL(find_library('pcre2-8'))
+PCRE2_LIB = find_library('pcre2-8')
+if not PCRE2_LIB:
+    raise ImportError('pcre2-8 library not found')
+
+PCRE2 = CDLL(PCRE2_LIB)
 PCRE2.pcre2_compile_8.restype = POINTER(c_char)
 PCRE2.pcre2_match_data_create_8.restype = POINTER(c_char)
 

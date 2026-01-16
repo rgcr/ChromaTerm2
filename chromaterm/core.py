@@ -431,7 +431,12 @@ class Rule:
         self._regex = value
 
         if self.pcre:
-            from . import pcre
+            try:
+                from . import pcre
+            except ImportError:
+                self._pcre = False
+                self._regex_object = re.compile(value.encode())
+                return
             self._regex_object = pcre.Pattern(value.encode())
         else:
             self._regex_object = re.compile(value.encode())
