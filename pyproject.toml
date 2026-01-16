@@ -15,9 +15,13 @@ maintainers = [
 keywords = ["terminal", "color", "regex", "highlighting", "cli"]
 classifiers = [
     "Intended Audience :: Information Technology",
-    "Intended Audience :: System Administrators", 
+    "Intended Audience :: System Administrators",
     "Intended Audience :: Telecommunications Industry",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",

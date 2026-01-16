@@ -1,4 +1,7 @@
 '''chromaterm tests'''
+import re
+from ctypes.util import find_library
+
 import pytest
 
 import chromaterm
@@ -601,6 +604,12 @@ def test_rule_change_pcre(pcre):
     rule = chromaterm.Rule('hello', chromaterm.Color('bold'), pcre=pcre)
 
     old_regex_object = rule._regex_object
+    if not find_library('pcre2-8'):
+        rule.pcre = True
+        assert rule.pcre is False
+        assert isinstance(rule._regex_object, re.Pattern)
+        return
+
     rule.pcre = not rule.pcre
     assert old_regex_object is not rule._regex_object
 
