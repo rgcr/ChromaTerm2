@@ -5,7 +5,7 @@
 ChromaTerm (`ct`) is a Python script that colors your terminal's output using
 regular expressions. It even works with interactive programs, like SSH.
 
-> **Original project by [hSaria](https://github.com/hSaria). This is a maintained and refactored version.**
+> **This is a maintained and refactored version.** Original [chromaterm](https://github.com/hSaria/ChromaTerm) project is archived.
 
 ![alt text](https://github.com/hSaria/ChromaTerm/raw/main/.github/junos-show-interface.png "Example output")
 
@@ -14,8 +14,6 @@ regular expressions. It even works with interactive programs, like SSH.
 ```shell
 pip3 install chromaterm2
 ```
-
-> **Note**: This is a maintained fork of the original ChromaTerm project. The original [chromaterm](https://github.com/hSaria/ChromaTerm) package is archived.
 
 ## Usage
 
@@ -161,12 +159,16 @@ ct ipconfig
 ct cmd /c echo "Test IP: 192.168.1.1"
 ```
 
-## Help
-
-If you've got any questions or suggestions, please open up an
-[issue](https://github.com/rgcr/ChromaTerm2/issues/new) (always
-appreciated).
-
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed information about changes in each version.
+
+## Contributing
+
+We ❤️ contributions!
+
+1. Fork the repo
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push the branch: `git push origin my-new-feature`
+5. Open a Pull Request 🚀
